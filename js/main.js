@@ -474,6 +474,11 @@
         var open = list ? list.classList.toggle("is-open") : false;
         st.classList.toggle("is-open", open);
         st.setAttribute("aria-expanded", open ? "true" : "false");
+        var panel = st.closest(".header__nav");
+        if (open && panel) {
+          panel.scrollTop = 0;
+          setTimeout(function () { panel.scrollTop = 0; }, 360);
+        }
       }
     });
     if (mega) mega.addEventListener("click", function (e) { if (e.target.closest("a")) closeMega(); });
@@ -524,6 +529,7 @@
         if (backdrop) backdrop.classList.toggle("is-open", open);
         burger.classList.toggle("is-open", open);
         burger.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) nav.scrollTop = 0;
       });
       nav.addEventListener("click", function (e) {
         if (e.target.closest("a, [data-callback]")) closeNav();
