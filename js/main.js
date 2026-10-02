@@ -58,12 +58,13 @@
     VF.qa(".products-swiper").forEach(function (el) {
       if (el.getAttribute("data-swiper-init")) return;
       el.setAttribute("data-swiper-init", "1");
+      var root = el.closest(".products-slider") || el;
       new Swiper(el, {
         slidesPerView: 1.15,
         spaceBetween: 16,
         watchOverflow: true,
         pagination: { el: el.querySelector(".swiper-pagination"), clickable: true },
-        navigation: { nextEl: el.querySelector(".swiper-button-next"), prevEl: el.querySelector(".swiper-button-prev") },
+        navigation: { nextEl: root.querySelector(".swiper-button-next"), prevEl: root.querySelector(".swiper-button-prev") },
         breakpoints: {
           560: { slidesPerView: 2, spaceBetween: 16 },
           900: { slidesPerView: 3, spaceBetween: 18 },
@@ -639,9 +640,9 @@
 
     var rel = VF.products.filter(function (x) { return x.category === p.category && x.id !== p.id; });
     VF.products.forEach(function (x) {
-      if (x.id !== p.id && rel.indexOf(x) === -1 && rel.length < 4) rel.push(x);
+      if (x.id !== p.id && rel.indexOf(x) === -1 && rel.length < 8) rel.push(x);
     });
-    renderProductsSlider("#related-grid", rel.slice(0, 4));
+    renderProductsSlider("#related-grid", rel.slice(0, 8));
     mountSwipers();
   }
 
@@ -669,9 +670,9 @@
       renderWorks("#works-grid");
       renderSecurity("#sec-grid");
       renderBrands("#brands-grid");
-      renderProductsSlider("#showcase-avtomatika", VF.products.filter(function (p) { return p.category === "avtomatika"; }).slice(0, 4));
-      renderProductsSlider("#showcase-video", VF.products.filter(function (p) { return p.category === "videonablyudenie"; }).slice(0, 4));
-      renderProductsSlider("#showcase-domofony", VF.products.filter(function (p) { return p.category === "domofony" || p.category === "skud"; }).slice(0, 4));
+      renderProductsSlider("#showcase-avtomatika", VF.products.filter(function (p) { return p.category === "avtomatika"; }).slice(0, 8));
+      renderProductsSlider("#showcase-video", VF.products.filter(function (p) { return p.category === "videonablyudenie"; }).slice(0, 8));
+      renderProductsSlider("#showcase-domofony", VF.products.filter(function (p) { return p.category === "domofony" || p.category === "skud"; }).slice(0, 8));
       mountSwipers();
     }
     if (page === "catalog") initCatalog();

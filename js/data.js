@@ -268,6 +268,218 @@ VF.products = [
     desc: "Предупреждение о движении ворот",
     price: 2900, stock: "in",
     specs: [["Питание", "230 В"], ["Защита", "IP44"], ["Цвет", "Красный"]]
+  },
+
+  /* --- Дополнительная автоматика --- */
+  {
+    id: "came-bx-708", category: "avtomatika", brand: "CAME",
+    name: "Комплект автоматики CAME BX 708", short: "CAME BX 708",
+    desc: "Для откатных ворот весом до 700 кг",
+    price: 48900, badge: "popular", stock: "in",
+    specs: [["Питание", "230 В"], ["Интенсивность", "40%"], ["Макс. вес створки", "700 кг"]]
+  },
+  {
+    id: "nice-robus-600", category: "avtomatika", brand: "NICE",
+    name: "Привод Nice ROBUS 600", short: "Nice ROBUS 600",
+    desc: "Интенсивный привод для откатных ворот до 600 кг",
+    price: 44900, stock: "in",
+    specs: [["Питание", "230 В"], ["Интенсивность", "50%"], ["Макс. вес створки", "600 кг"]]
+  },
+  {
+    id: "doorhan-slide-1300", category: "avtomatika", brand: "DOORHAN",
+    name: "Комплект DoorHan Slide-1300", short: "DoorHan Slide-1300",
+    desc: "Для откатных ворот весом до 1300 кг",
+    price: 57900, stock: "order",
+    specs: [["Питание", "220 В"], ["Скорость", "12 м/мин"], ["Макс. вес створки", "1300 кг"]]
+  },
+  {
+    id: "faac-740", category: "avtomatika", brand: "FAAC",
+    name: "Комплект FAAC 740", short: "FAAC 740",
+    desc: "Для промышленных откатных ворот",
+    price: 68900, badge: "kit", stock: "in",
+    specs: [["Питание", "230 В"], ["Интенсивность", "70%"], ["Макс. вес створки", "900 кг"]]
+  },
+  {
+    id: "alutech-lg-2100", category: "avtomatika", brand: "ALUTECH",
+    name: "Привод Alutech Levigato LG-2100", short: "Alutech LG-2100",
+    desc: "Для тяжёлых откатных ворот до 2100 кг",
+    price: 79900, stock: "in",
+    specs: [["Питание", "230 В"], ["Интенсивность", "80%"], ["Макс. вес створки", "2100 кг"]]
+  },
+  {
+    id: "nice-wingo-5024", category: "avtomatika", brand: "NICE",
+    name: "Комплект Nice WINGO 5024", short: "Nice WINGO 5024",
+    desc: "Для распашных ворот до 500 кг",
+    price: 49500, stock: "in",
+    specs: [["Створка", "до 3 м"], ["Питание", "24 В"], ["Тип", "Распашные"]]
+  },
+
+  /* --- Дополнительное видеонаблюдение --- */
+  {
+    id: "hikvision-4mp", category: "videonablyudenie", brand: "HIKVISION",
+    name: "Уличная IP-камера Hikvision 4 Мп", short: "Hikvision 4 MP",
+    desc: "Цилиндрическая камера с ИК-подсветкой",
+    price: 11900, stock: "in",
+    specs: [["Разрешение", "4 Мп"], ["Защита", "IP67"], ["ИК-подсветка", "до 40 м"]]
+  },
+  {
+    id: "dahua-ptz-4mp", category: "videonablyudenie", brand: "DAHUA",
+    name: "Поворотная PTZ-камера Dahua 4 Мп", short: "Dahua PTZ 4 MP",
+    desc: "Обзор 360° для больших территорий",
+    price: 27900, badge: "popular", stock: "order",
+    specs: [["Разрешение", "4 Мп"], ["Поворот", "360°"], ["Zoom", "25x"]]
+  },
+  {
+    id: "kit-8-camera", category: "videonablyudenie", brand: "КОМПЛЕКТ",
+    name: "Комплект видеонаблюдения на 8 камер", short: "8-camera kit",
+    desc: "Для дома, офиса и коммерческого объекта",
+    price: 58900, oldPrice: 64900, badge: "kit", stock: "in",
+    specs: [["Камеры", "8 шт."], ["Регистратор", "8 каналов"], ["Питание", "PoE"]]
+  },
+  {
+    id: "hiwatch-nvr-4", category: "videonablyudenie", brand: "HIWATCH",
+    name: "Видеорегистратор HiWatch на 4 канала", short: "HiWatch NVR 4",
+    desc: "Компактный регистратор для дома",
+    price: 8900, stock: "in",
+    specs: [["Каналы", "4"], ["Жёсткий диск", "до 4 ТБ"], ["Питание", "220 В"]]
+  },
+
+  /* --- Дополнительные домофоны --- */
+  {
+    id: "tantos-vizit", category: "domofony", brand: "TANTOS",
+    name: "Видеодомофон Tantos Vizit", short: "Tantos Vizit",
+    desc: "Монитор 7 дюймов с записью",
+    price: 14900, badge: "popular", stock: "in",
+    specs: [["Экран", "7 дюймов"], ["Панель", "до 4 шт."], ["Память", "SD-карта"]]
+  },
+  {
+    id: "commax-cdp-1020", category: "domofony", brand: "COMMAX",
+    name: "Видеодомофон Commax CDP-1020", short: "Commax CDP",
+    desc: "Для квартиры и частного дома",
+    price: 9900, stock: "order",
+    specs: [["Экран", "7 дюймов"], ["Тип", "Видео"], ["Замок", "Управление"]]
+  },
+  {
+    id: "novicam-panel-2mp", category: "domofony", brand: "NOVICAM",
+    name: "Вызывная панель Novicam 2 Мп", short: "Novicam panel",
+    desc: "Металлическая панель с ИК-подсветкой",
+    price: 8900, stock: "in",
+    specs: [["Камера", "2 Мп"], ["Защита", "IP66"], ["Материал", "Металл"]]
+  },
+
+  /* --- Дополнительный контроль доступа --- */
+  {
+    id: "controller-c2000-2", category: "skud", brand: "СКУД",
+    name: "Контроллер доступа C2000-2", short: "Controller C2000-2",
+    desc: "Управление замком, турникетом и калиткой",
+    price: 12900, stock: "in",
+    specs: [["Пользователи", "до 2000"], ["Интерфейс", "RS-485"], ["Питание", "12 В"]]
+  },
+  {
+    id: "magnetic-lock-500", category: "skud", brand: "СКУД",
+    name: "Электромагнитный замок 500 кг", short: "Magnetic lock 500",
+    desc: "Усиленный замок для входной группы",
+    price: 8900, badge: "kit", stock: "in",
+    specs: [["Удержание", "500 кг"], ["Питание", "12 В"], ["Установка", "Накладная"]]
+  },
+  {
+    id: "turnstile-tripod", category: "skud", brand: "СКУД",
+    name: "Турникет-трипод для проходной", short: "Турникет",
+    desc: "Контроль прохода на объекте",
+    price: 54900, stock: "order",
+    specs: [["Тип", "Трипод"], ["Питание", "12 В"], ["Пропускная", "30 чел/мин"]]
+  },
+
+  /* --- Дополнительные шлагбаумы --- */
+  {
+    id: "came-g4040", category: "shlagbaumy", brand: "CAME",
+    name: "Шлагбаум CAME G4040", short: "CAME G4040",
+    desc: "Интенсивный шлагбаум для проезда до 4 м",
+    price: 105000, stock: "in",
+    specs: [["Стрела", "до 4 м"], ["Скорость", "2,5 с"], ["Питание", "230 В"]]
+  },
+  {
+    id: "nice-sigma", category: "shlagbaumy", brand: "NICE",
+    name: "Шлагбаум Nice SIGMA", short: "Nice SIGMA",
+    desc: "Для въезда в ЖК и на парковку",
+    price: 135000, badge: "popular", stock: "order",
+    specs: [["Стрела", "до 6 м"], ["Питание", "230 В"], ["Интенсивность", "90%"]]
+  },
+  {
+    id: "shlagbaum-stoyka", category: "shlagbaumy", brand: "УНИВЕРСАЛ",
+    name: "Стойка опорная для стрелы шлагбаума", short: "Стойка",
+    desc: "Опора для длинной стрелы",
+    price: 5900, stock: "in",
+    specs: [["Высота", "0,9 м"], ["Материал", "Сталь"], ["Монтаж", "Анкерный"]]
+  },
+
+  /* --- Дополнительные ворота --- */
+  {
+    id: "vorota-otkatnye-5000", category: "vorota", brand: "ВОРОТА FIX",
+    name: "Откатные ворота 5 м под ключ", short: "Откатные 5 м",
+    desc: "С автоматикой, пультами и монтажом",
+    price: 179000, badge: "popular", stock: "order",
+    specs: [["Проём", "5 м"], ["Автоматика", "В комплекте"], ["Монтаж", "Включён"]]
+  },
+  {
+    id: "vorota-raspashnye-4000", category: "vorota", brand: "ВОРОТА FIX",
+    name: "Распашные ворота 4 м", short: "Распашные 4 м",
+    desc: "Профнастил, привод и калитка",
+    price: 154000, stock: "order",
+    specs: [["Проём", "4 м"], ["Привод", "В комплекте"], ["Калитка", "Есть"]]
+  },
+  {
+    id: "vorota-sektsionnye-3000", category: "vorota", brand: "ВОРОТА FIX",
+    name: "Секционные ворота 3×2,5 м", short: "Секционные 3000",
+    desc: "Утеплённые, с потолочным приводом",
+    price: 138000, stock: "order",
+    specs: [["Размер", "3×2,5 м"], ["Привод", "Потолочный"], ["Утепление", "45 мм"]]
+  },
+
+  /* --- Дополнительные комплектующие --- */
+  {
+    id: "rejka-m6", category: "komplektuyushchie", brand: "УНИВЕРСАЛ",
+    name: "Зубчатая рейка М6 (1 м)", short: "Рейка М6",
+    desc: "Для тяжёлых откатных ворот",
+    price: 4900, stock: "in",
+    specs: [["Модуль", "М6"], ["Длина", "1 м"], ["Материал", "Сталь"]]
+  },
+  {
+    id: "fotoelementy-came-dir", category: "komplektuyushchie", brand: "CAME",
+    name: "Фотоэлементы CAME DIR", short: "Фотоэлементы CAME",
+    desc: "Защита от закрытия при препятствии",
+    price: 5900, stock: "in",
+    specs: [["Дальность", "до 15 м"], ["Питание", "24 В"], ["Защита", "IP44"]]
+  },
+  {
+    id: "lovitel-koncevoj", category: "komplektuyushchie", brand: "УНИВЕРСАЛ",
+    name: "Ловитель концевой для ворот", short: "Ловитель",
+    desc: "Фиксация створки в закрытом положении",
+    price: 4200, stock: "in",
+    specs: [["Тип", "Концевой"], ["Нагрузка", "до 800 кг"], ["Материал", "Сталь"]]
+  },
+
+  /* --- Дополнительное управление --- */
+  {
+    id: "pult-4ch", category: "upravlenie", brand: "УНИВЕРСАЛ",
+    name: "Пульт дистанционного управления 4 кнопки", short: "Пульт 4 кнопки",
+    desc: "Управление воротами и калиткой",
+    price: 2200, stock: "in",
+    specs: [["Кнопки", "4"], ["Частота", "433 МГц"], ["Дальность", "до 60 м"]]
+  },
+  {
+    id: "gsm-nice-it4wifi", category: "upravlenie", brand: "NICE",
+    name: "Модуль управления Nice IT4WIFI", short: "GSM Nice IT4WIFI",
+    desc: "Управление воротами со смартфона",
+    price: 12900, badge: "popular", stock: "in",
+    specs: [["Связь", "Wi-Fi"], ["Пользователи", "до 50"], ["Питание", "24 В"]]
+  },
+  {
+    id: "signal-lamp-led", category: "upravlenie", brand: "УНИВЕРСАЛ",
+    name: "Сигнальная LED-лампа для ворот", short: "LED-лампа",
+    desc: "Яркое предупреждение о движении",
+    price: 3400, stock: "in",
+    specs: [["Питание", "230 В"], ["Защита", "IP44"], ["Тип", "LED"]]
   }
 ];
 
