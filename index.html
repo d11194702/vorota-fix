@@ -37,10 +37,10 @@
           </span>
         </a>
 
-        <a class="catalog-btn" href="catalog.html">
+        <button type="button" class="catalog-btn" data-catalog-toggle aria-expanded="false" aria-haspopup="true">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
           Каталог
-        </a>
+        </button>
 
         <form class="search" action="catalog.html" method="get" role="search">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -77,7 +77,13 @@
       <div class="container header__nav-inner">
         <span class="nav-label">Меню</span>
         <ul>
-          <li class="nav-catalog"><a href="catalog.html">Каталог</a></li>
+          <li class="nav-catalog">
+            <button type="button" class="nav-acc" data-submenu-toggle aria-expanded="false">
+              <span>Каталог</span>
+              <i class="nav-acc__chev"></i>
+            </button>
+            <ul class="nav-submenu" id="nav-submenu"></ul>
+          </li>
           <li><a href="#mount">Монтаж</a></li>
           <li><a href="#mount">Ремонт</a></li>
           <li><a href="#works">Наши работы</a></li>
@@ -105,6 +111,19 @@
         </div>
       </div>
     </nav>
+
+    <div class="megamenu" id="catalog-megamenu">
+      <div class="container">
+        <div class="megamenu__grid" id="catalog-megamenu-grid"></div>
+        <div class="megamenu__foot">
+          <a class="section__link" href="catalog.html">Смотреть весь каталог →</a>
+          <a class="megamenu__phone" href="tel:+79104255555" data-phone-link>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span data-phone>+7 910 425-55-55</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </header>
 
   <div class="nav-backdrop" id="nav-backdrop"></div>

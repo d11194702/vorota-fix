@@ -428,12 +428,66 @@
     VF.toast("Спасибо! Мы свяжемся с вами");
   }
 
+  /* ---------- каталог: мега-меню (desktop) и аккордеон (mobile) ---------- */
+  function initCatalogMenus() {
+    var mega = document.getElementById("catalog-megamenu");
+    var grid = document.getElementById("catalog-megamenu-grid");
+    var sub = document.getElementById("nav-submenu");
+    if (grid) {
+      grid.innerHTML = VF.categories.map(function (c) {
+        return '<a class="megamenu__item" href="catalog.html?cat=' + c.slug + '">' +
+          "<b>" + esc(c.title) + "</b><span>" + esc(c.desc) + "</span></a>";
+      }).join("");
+    }
+    if (sub) {
+      sub.innerHTML = VF.categories.map(function (c) {
+        return '<li><a href="catalog.html?cat=' + c.slug + '">' + esc(c.title) + "</a></li>";
+      }).join("") + '<li><a href="catalog.html">Весь каталог →</a></li>';
+    }
+
+    function openMega() {
+      if (!mega) return;
+      mega.classList.add("is-open");
+      var b = document.querySelector("[data-catalog-toggle]");
+      if (b) { b.classList.add("is-open"); b.setAttribute("aria-expanded", "true"); }
+    }
+    function closeMega() {
+      if (!mega) return;
+      mega.classList.remove("is-open");
+      var b = document.querySelector("[data-catalog-toggle]");
+      if (b) { b.classList.remove("is-open"); b.setAttribute("aria-expanded", "false"); }
+    }
+
+    document.addEventListener("click", function (e) {
+      var toggle = e.target.closest("[data-catalog-toggle]");
+      if (toggle) {
+        e.preventDefault();
+        if (mega && mega.classList.contains("is-open")) closeMega(); else openMega();
+        return;
+      }
+      if (mega && mega.classList.contains("is-open") && !e.target.closest("#catalog-megamenu")) closeMega();
+
+      var st = e.target.closest("[data-submenu-toggle]");
+      if (st) {
+        e.preventDefault();
+        var list = st.parentElement.querySelector(".nav-submenu");
+        var open = list ? list.classList.toggle("is-open") : false;
+        st.classList.toggle("is-open", open);
+        st.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+    });
+    if (mega) mega.addEventListener("click", function (e) { if (e.target.closest("a")) closeMega(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMega(); });
+    VF.closeMegamenu = closeMega;
+  }
+
   /* =====================================================
      ИНИЦИАЛИЗАЦИЯ
      ===================================================== */
   document.addEventListener("DOMContentLoaded", function () {
     $$("[data-vf-form]").forEach(bindStaticForm);
     bindLeadButtons();
+    initCatalogMenus();
 
     // телефон/почта в статичной разметке
     $$("[data-phone]").forEach(function (el) { el.textContent = VF.company.phone; });
