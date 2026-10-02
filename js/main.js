@@ -21,12 +21,13 @@
       ? '<span class="stock stock--order">Под заказ</span>'
       : '<span class="stock stock--in">В наличии</span>';
     var old = p.oldPrice ? "<s>" + money(p.oldPrice) + "</s>" : "";
+    var href = "product.html?id=" + p.id;
     return '' +
       '<article class="product" data-id="' + p.id + '">' +
-        '<div class="product__media">' + badge + '<div class="product__ph">' + esc(p.short) + "</div></div>" +
+        '<a class="product__media" href="' + href + '">' + badge + '<span class="product__ph">' + esc(p.short) + "</span></a>" +
         '<div class="product__body">' +
           '<div class="product__meta"><span class="product__brand">' + esc(p.brand) + "</span>" + stock + "</div>" +
-          '<h3 class="product__name">' + esc(p.name) + "</h3>" +
+          '<h3 class="product__name"><a href="' + href + '">' + esc(p.name) + "</a></h3>" +
           '<p class="product__desc">' + esc(p.desc) + "</p>" +
           specsHTML(p) +
           '<div class="product__foot">' +
@@ -42,6 +43,34 @@
     var el = $(sel);
     if (!el) return;
     el.innerHTML = list.map(productCard).join("");
+  }
+
+  function renderProductsSlider(sel, list) {
+    var el = $(sel);
+    if (!el) return;
+    el.innerHTML = list.map(function (p) {
+      return '<div class="swiper-slide">' + productCard(p) + "</div>";
+    }).join("");
+  }
+
+  function mountSwipers() {
+    if (typeof Swiper === "undefined") return;
+    VF.qa(".products-swiper").forEach(function (el) {
+      if (el.getAttribute("data-swiper-init")) return;
+      el.setAttribute("data-swiper-init", "1");
+      new Swiper(el, {
+        slidesPerView: 1.15,
+        spaceBetween: 16,
+        watchOverflow: true,
+        pagination: { el: el.querySelector(".swiper-pagination"), clickable: true },
+        navigation: { nextEl: el.querySelector(".swiper-button-next"), prevEl: el.querySelector(".swiper-button-prev") },
+        breakpoints: {
+          560: { slidesPerView: 2, spaceBetween: 16 },
+          900: { slidesPerView: 3, spaceBetween: 18 },
+          1200: { slidesPerView: 4, spaceBetween: 18 }
+        }
+      });
+    });
   }
 
   /* ---------- категории ---------- */
@@ -486,6 +515,136 @@
     VF.closeMegamenu = closeMega;
   }
 
+  /* ---------- квиз подбора ---------- */
+  function initQuiz() {
+    var form = document.querySelector("[data-quiz]");
+    if (!form) return;
+    var steps = Array.prototype.slice.call(form.querySelectorAll("[data-quiz-step]"));
+    if (!steps.length) return;
+    var progress = form.querySelector("[data-quiz-progress]");
+    var curEl = form.querySelector("[data-quiz-current]");
+    var totalEl = form.querySelector("[data-quiz-total]");
+    var back = form.querySelector("[data-quiz-back]");
+    var next = form.querySelector("[data-quiz-next]");
+    var submit = form.querySelector("[data-quiz-submit]");
+    var i = 0;
+    if (totalEl) totalEl.textContent = steps.length;
+
+    function render() {
+      steps.forEach(function (s, n) { s.classList.toggle("is-active", n === i); });
+      if (curEl) curEl.textContent = i + 1;
+      if (progress) progress.style.width = ((i + 1) / steps.length * 100) + "%";
+      if (back) back.hidden = i === 0;
+      if (next) next.hidden = i === steps.length - 1;
+      if (submit) submit.hidden = i !== steps.length - 1;
+    }
+    function go(n) { i = Math.max(0, Math.min(steps.length - 1, n)); render(); }
+
+    if (next) next.addEventListener("click", function () { go(i + 1); });
+    if (back) back.addEventListener("click", function () { go(i - 1); });
+    form.addEventListener("click", function (e) {
+      var choice = e.target.closest(".choice");
+      if (!choice || i >= steps.length - 1) return;
+      if (choice.closest("[data-quiz-step]") !== steps[i]) return;
+      setTimeout(function () { go(i + 1); }, 220);
+    });
+    form.addEventListener("change", function (e) {
+      if (!e.target.matches('input[type="file"]')) return;
+      var label = e.target.closest(".upload");
+      if (!label) return;
+      var nameEl = label.querySelector("[data-upload-name]");
+      var f = e.target.files && e.target.files[0];
+      if (f) { if (nameEl) nameEl.textContent = f.name; label.classList.add("has-file"); }
+      else { if (nameEl) nameEl.textContent = ""; label.classList.remove("has-file"); }
+    });
+    render();
+  }
+
+  /* ---------- страница товара ---------- */
+  function benefit(iconName, title, text) {
+    return '<div class="product-benefit"><span class="product-benefit__icon">' + icon(iconName) + "</span>" +
+      "<div><h4>" + esc(title) + "</h4><p>" + esc(text) + "</p></div></div>";
+  }
+
+  function initProductPage() {
+    var root = document.getElementById("product-root");
+    if (!root) return;
+    var id = new URLSearchParams(location.search).get("id");
+    var p = id ? byId(id) : VF.products[0];
+    var bc = document.getElementById("product-breadcrumbs");
+
+    if (!p) {
+      root.innerHTML = '<div class="empty">Товар не найден. <a class="section__link" href="catalog.html">Вернуться в каталог →</a></div>';
+      if (bc) bc.innerHTML = '<a href="index.html">Главная</a> <span>/</span> <a href="catalog.html">Каталог</a>';
+      return;
+    }
+
+    var cat = VF.categories.filter(function (c) { return c.slug === p.category; })[0];
+    document.title = p.name + " — купить в " + VF.company.name;
+    if (bc) bc.innerHTML =
+      '<a href="index.html">Главная</a> <span>/</span> ' +
+      '<a href="catalog.html">Каталог</a> <span>/</span> ' +
+      '<a href="catalog.html?cat=' + p.category + '">' + esc(cat ? cat.title : "Каталог") + "</a> <span>/</span> " +
+      "<span>" + esc(p.short) + "</span>";
+
+    var badge = p.badge ? '<span class="badge badge--' + p.badge + '">' + BADGE[p.badge] + "</span>" : "";
+    var stock = p.stock === "order" ? '<span class="stock stock--order">Под заказ</span>' : '<span class="stock stock--in">В наличии</span>';
+    var old = p.oldPrice ? "<s>" + money(p.oldPrice) + "</s>" : "";
+    var specs = (p.specs || []).map(function (s) {
+      return '<div class="row"><dt>' + esc(s[0]) + "</dt><dd>" + esc(s[1]) + "</dd></div>";
+    }).join("");
+
+    root.innerHTML =
+      '<div class="product-gallery">' +
+        '<div class="product-gallery__main">' + badge + '<span class="ph">' + esc(p.short) + "</span></div>" +
+        '<div class="product-gallery__thumbs">' +
+          [0, 1, 2].map(function () { return '<span class="product-gallery__thumb">' + esc(p.brand) + "</span>"; }).join("") +
+        "</div>" +
+      "</div>" +
+      '<div class="product-info">' +
+        '<div class="product-info__meta"><span class="product__brand">' + esc(p.brand) + "</span>" + stock + "</div>" +
+        "<h1>" + esc(p.name) + "</h1>" +
+        '<p class="product-info__desc">' + esc(p.desc) + "</p>" +
+        '<div class="product-info__price"><b>' + money(p.price) + "</b>" + old + "</div>" +
+        '<div class="product-buy">' +
+          '<div class="qty"><button type="button" data-pqty="dec" aria-label="Меньше">−</button><span id="p-qty">1</span><button type="button" data-pqty="inc" aria-label="Больше">+</button></div>' +
+          '<button class="btn btn--primary btn--lg" data-buy="' + p.id + '">В корзину</button>' +
+          '<button class="btn btn--ghost btn--lg" data-callback>Купить в 1 клик</button>' +
+        "</div>" +
+        '<div class="product-benefits">' +
+          benefit("shield", "Гарантия до 2 лет", "Официальная гарантия на оборудование и монтаж") +
+          benefit("truck", "Доставка по Москве и области", "Привезём на объект или в пункт выдачи") +
+          benefit("wrench", "Профессиональный монтаж", "Установим и настроим систему под ключ") +
+        "</div>" +
+        (specs ? '<div class="product-specs"><h3>Характеристики</h3><dl>' + specs + "</dl></div>" : "") +
+      "</div>";
+
+    var descEl = document.getElementById("product-desc");
+    if (descEl) {
+      descEl.innerHTML =
+        '<div class="product-text">' +
+          '<h3 style="font-size:24px;margin-bottom:10px">Описание</h3>' +
+          "<p>" + esc(p.name) + " — " + esc(p.desc) + ". Оборудование поставляется оригинальным, с документами и официальной гарантией. Перед покупкой уточним совместимость с вашими воротами и при необходимости поможем с установкой под ключ в Москве и Московской области.</p>" +
+        "</div>";
+    }
+
+    var qty = 1;
+    var qtyEl = document.getElementById("p-qty");
+    root.addEventListener("click", function (e) {
+      if (e.target.closest('[data-pqty="inc"]')) { qty++; qtyEl.textContent = qty; return; }
+      if (e.target.closest('[data-pqty="dec"]')) { qty = Math.max(1, qty - 1); qtyEl.textContent = qty; return; }
+      var buy = e.target.closest("[data-buy]");
+      if (buy) { VF.cart.add(buy.getAttribute("data-buy"), qty); }
+    });
+
+    var rel = VF.products.filter(function (x) { return x.category === p.category && x.id !== p.id; });
+    VF.products.forEach(function (x) {
+      if (x.id !== p.id && rel.indexOf(x) === -1 && rel.length < 4) rel.push(x);
+    });
+    renderProductsSlider("#related-grid", rel.slice(0, 4));
+    mountSwipers();
+  }
+
   /* =====================================================
      ИНИЦИАЛИЗАЦИЯ
      ===================================================== */
@@ -510,12 +669,14 @@
       renderWorks("#works-grid");
       renderSecurity("#sec-grid");
       renderBrands("#brands-grid");
-      renderProducts("#showcase-avtomatika", VF.products.filter(function (p) { return p.category === "avtomatika"; }).slice(0, 4));
-      renderProducts("#showcase-video", VF.products.filter(function (p) { return p.category === "videonablyudenie"; }).slice(0, 4));
-      renderProducts("#showcase-domofony", VF.products.filter(function (p) { return p.category === "domofony" || p.category === "skud"; }).slice(0, 4));
-      // мобильное меню
+      renderProductsSlider("#showcase-avtomatika", VF.products.filter(function (p) { return p.category === "avtomatika"; }).slice(0, 4));
+      renderProductsSlider("#showcase-video", VF.products.filter(function (p) { return p.category === "videonablyudenie"; }).slice(0, 4));
+      renderProductsSlider("#showcase-domofony", VF.products.filter(function (p) { return p.category === "domofony" || p.category === "skud"; }).slice(0, 4));
+      mountSwipers();
     }
     if (page === "catalog") initCatalog();
+    if (page === "product") initProductPage();
+    initQuiz();
 
     var burger = $("#burger"), nav = $("#header-nav"), backdrop = $("#nav-backdrop");
     function closeNav() {

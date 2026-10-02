@@ -6,6 +6,7 @@
   <title>ВОРОТА FIX — автоматика для ворот с монтажом под ключ в Москве и области</title>
   <meta name="description" content="Подбор, продажа и установка автоматики для откатных, распашных и секционных ворот. Шлагбаумы, видеонаблюдение, домофоны и СКУД. Гарантия до 2 лет. Москва и Московская область.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="home">
@@ -68,12 +69,11 @@
           <a class="social-btn" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           </a>
+          <button class="cart-btn" data-cart-open aria-label="Корзина">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h2.5l2.2 11.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6"/></svg>
+            <span class="cart-btn__count" data-cart-count data-empty="true">0</span>
+          </button>
         </div>
-
-        <button class="cart-btn" data-cart-open aria-label="Корзина">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h2.5l2.2 11.2a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21 7H6"/></svg>
-          <span class="cart-btn__count" data-cart-count data-empty="true">0</span>
-        </button>
       </div>
     </div>
 
@@ -291,7 +291,12 @@
           </div>
           <a class="section__link" href="catalog.html">Все товары →</a>
         </div>
-        <div class="products-grid" id="showcase-avtomatika"></div>
+        <div class="swiper products-swiper">
+          <div class="swiper-wrapper" id="showcase-avtomatika"></div>
+          <button type="button" class="swiper-button-prev" aria-label="Назад"></button>
+          <button type="button" class="swiper-button-next" aria-label="Вперёд"></button>
+          <div class="swiper-pagination"></div>
+        </div>
         <div class="cta-strip">
           <span class="cta-strip__icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg></span>
           <div>
@@ -394,7 +399,12 @@
           </div>
           <a class="section__link" href="catalog.html?cat=videonablyudenie">Все товары →</a>
         </div>
-        <div class="products-grid" id="showcase-video"></div>
+        <div class="swiper products-swiper">
+          <div class="swiper-wrapper" id="showcase-video"></div>
+          <button type="button" class="swiper-button-prev" aria-label="Назад"></button>
+          <button type="button" class="swiper-button-next" aria-label="Вперёд"></button>
+          <div class="swiper-pagination"></div>
+        </div>
         <div class="cta-strip">
           <span class="cta-strip__icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
           <div>
@@ -416,7 +426,12 @@
           </div>
           <a class="section__link" href="catalog.html?cat=domofony">Все товары →</a>
         </div>
-        <div class="products-grid" id="showcase-domofony"></div>
+        <div class="swiper products-swiper">
+          <div class="swiper-wrapper" id="showcase-domofony"></div>
+          <button type="button" class="swiper-button-prev" aria-label="Назад"></button>
+          <button type="button" class="swiper-button-next" aria-label="Вперёд"></button>
+          <div class="swiper-pagination"></div>
+        </div>
         <div class="cta-strip">
           <span class="cta-strip__icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="3"/><circle cx="12" cy="9" r="3"/><path d="M7 19c1-3 9-3 10 0"/></svg></span>
           <div>
@@ -508,57 +523,74 @@
           </div>
 
           <div data-form-wrap>
-            <form class="form-card" data-vf-form novalidate>
-              <h3>Ответьте на несколько вопросов</h3>
-              <p class="form-card__hint">Точные характеристики знать необязательно. Поля со звёздочкой обязательны.</p>
-
-              <div class="field">
-                <span class="field__label">1. Что нужно подобрать?</span>
-                <div class="choices">
-                  <label class="choice"><input type="radio" name="need" value="Автоматика" checked><span>Автоматика</span></label>
-                  <label class="choice"><input type="radio" name="need" value="Шлагбаум"><span>Шлагбаум</span></label>
-                  <label class="choice"><input type="radio" name="need" value="Видеонаблюдение"><span>Видеонаблюдение</span></label>
-                  <label class="choice"><input type="radio" name="need" value="Домофон / СКУД"><span>Домофон / СКУД</span></label>
-                </div>
+            <form class="form-card quiz" data-vf-form data-quiz novalidate>
+              <div class="quiz__top">
+                <div class="quiz__bar"><span class="quiz__progress" data-quiz-progress></span></div>
+                <div class="quiz__count">Шаг <b data-quiz-current>1</b> из <span data-quiz-total>4</span></div>
               </div>
 
-              <div class="field">
-                <span class="field__label">2. Для какого объекта?</span>
-                <div class="choices choices--3">
-                  <label class="choice"><input type="radio" name="object" value="Частный дом" checked><span>Частный дом</span></label>
-                  <label class="choice"><input type="radio" name="object" value="СНТ / ЖК"><span>СНТ / ЖК</span></label>
-                  <label class="choice"><input type="radio" name="object" value="Бизнес"><span>Бизнес</span></label>
-                </div>
+              <div class="quiz__steps">
+                <section class="quiz__step is-active" data-quiz-step>
+                  <h3>Что нужно подобрать?</h3>
+                  <p class="form-card__hint">Выберите, что интересует — подберём оборудование и монтаж.</p>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="need" value="Автоматика" checked><span>Автоматика</span></label>
+                    <label class="choice"><input type="radio" name="need" value="Шлагбаум"><span>Шлагбаум</span></label>
+                    <label class="choice"><input type="radio" name="need" value="Видеонаблюдение"><span>Видеонаблюдение</span></label>
+                    <label class="choice"><input type="radio" name="need" value="Домофон / СКУД"><span>Домофон / СКУД</span></label>
+                  </div>
+                </section>
+
+                <section class="quiz__step" data-quiz-step>
+                  <h3>Для какого объекта?</h3>
+                  <p class="form-card__hint">От типа объекта зависит интенсивность работы и комплект.</p>
+                  <div class="choices choices--3">
+                    <label class="choice"><input type="radio" name="object" value="Частный дом" checked><span>Частный дом</span></label>
+                    <label class="choice"><input type="radio" name="object" value="СНТ / ЖК"><span>СНТ / ЖК</span></label>
+                    <label class="choice"><input type="radio" name="object" value="Бизнес"><span>Бизнес</span></label>
+                  </div>
+                </section>
+
+                <section class="quiz__step" data-quiz-step>
+                  <h3>Как удобнее получить ответ?</h3>
+                  <p class="form-card__hint">Перезвоним, напишем в мессенджер или на почту.</p>
+                  <div class="choices choices--3">
+                    <label class="choice"><input type="radio" name="contact" value="Телефон" checked><span>Телефон</span></label>
+                    <label class="choice"><input type="radio" name="contact" value="MAX"><span>MAX</span></label>
+                    <label class="choice"><input type="radio" name="contact" value="Telegram"><span>Telegram</span></label>
+                  </div>
+                </section>
+
+                <section class="quiz__step" data-quiz-step>
+                  <h3>Куда прислать расчёт?</h3>
+                  <p class="form-card__hint">Оставьте контакты — подготовим подбор и предварительную смету.</p>
+                  <div class="field">
+                    <label class="field__label" for="lead-phone">Телефон *</label>
+                    <input class="input" id="lead-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required>
+                    <div class="field__error">Укажите корректный телефон</div>
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="lead-name">Как к вам обращаться? *</label>
+                    <input class="input" id="lead-name" name="name" placeholder="Ваше имя" required>
+                    <div class="field__error">Укажите имя</div>
+                  </div>
+                  <label class="upload">
+                    <input type="file" name="photo" accept="image/*">
+                    <span class="upload__icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></span>
+                    <span class="upload__text">
+                      <b>Есть фотография объекта?</b>
+                      <span>Приложите фото ворот, шлагбаума или места установки</span>
+                    </span>
+                    <span class="upload__name" data-upload-name></span>
+                  </label>
+                </section>
               </div>
 
-              <div class="field">
-                <span class="field__label">3. Как удобнее получить ответ?</span>
-                <div class="choices choices--3">
-                  <label class="choice"><input type="radio" name="contact" value="Телефон" checked><span>Телефон</span></label>
-                  <label class="choice"><input type="radio" name="contact" value="MAX"><span>MAX</span></label>
-                  <label class="choice"><input type="radio" name="contact" value="Telegram"><span>Telegram</span></label>
-                </div>
+              <div class="quiz__nav">
+                <button type="button" class="btn btn--ghost" data-quiz-back hidden>← Назад</button>
+                <button type="button" class="btn btn--primary" data-quiz-next>Далее →</button>
+                <button class="btn btn--primary" type="submit" data-quiz-submit hidden>Получить подбор и расчёт →</button>
               </div>
-
-              <div class="field">
-                <label class="field__label" for="lead-phone">Телефон *</label>
-                <input class="input" id="lead-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required>
-                <div class="field__error">Укажите корректный телефон</div>
-              </div>
-
-              <div class="field">
-                <label class="field__label" for="lead-name">Как к вам обращаться? *</label>
-                <input class="input" id="lead-name" name="name" placeholder="Ваше имя" required>
-                <div class="field__error">Укажите имя</div>
-              </div>
-
-              <label class="upload">
-                <input type="file" name="photo" accept="image/*">
-                <b>Есть фотография?</b>
-                Её можно будет приложить в форме
-              </label>
-
-              <button class="btn btn--primary btn--lg btn--block" type="submit" style="margin-top:16px">Получить подбор и расчёт →</button>
               <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности и обработкой персональных данных.</p>
             </form>
           </div>
@@ -719,6 +751,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/data.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
